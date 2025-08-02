@@ -135,6 +135,10 @@
     background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #f0f9ff 100%);
     min-height: 100vh;
   }
+
+  .dark body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  }
 }
 
 /* Enhanced gradient backgrounds with darker blues */
@@ -147,6 +151,12 @@
   background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f0f9ff 100%);
   border: 1px solid #cbd5e1;
   box-shadow: 0 2px 8px 0 rgba(30, 64, 175, 0.08);
+}
+
+.dark .gradient-card {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+  border: 1px solid #475569;
+  box-shadow: 0 2px 8px 0 rgba(59, 130, 246, 0.15);
 }
 
 .accent-gradient {
@@ -174,6 +184,10 @@
   box-shadow: 0 12px 28px -8px rgba(30, 64, 175, 0.25), 0 8px 16px -8px rgba(99, 102, 241, 0.15);
 }
 
+.dark .hover-lift:hover {
+  box-shadow: 0 12px 28px -8px rgba(59, 130, 246, 0.3), 0 8px 16px -8px rgba(99, 102, 241, 0.2);
+}
+
 /* Custom scrollbar styling */
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
@@ -182,6 +196,10 @@
 .custom-scrollbar::-webkit-scrollbar-track {
   background: #f0f9ff;
   border-radius: 4px;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-track {
+  background: #334155;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
@@ -198,9 +216,19 @@
   box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.2);
 }
 
+.dark .focus-glow:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
 /* Sophisticated animated background */
 .animated-bg {
   background: linear-gradient(-45deg, #f8fafc, #f0f9ff, #e0f2fe, #dbeafe, #f0f9ff);
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+}
+
+.dark .animated-bg {
+  background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #475569, #1e293b);
   background-size: 400% 400%;
   animation: gradientShift 20s ease infinite;
 }
@@ -258,9 +286,20 @@
   transition: all 0.3s ease;
 }
 
+.dark .enhanced-card {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border: 1px solid #475569;
+  box-shadow: 0 2px 8px 0 rgba(59, 130, 246, 0.15), 0 1px 4px 0 rgba(99, 102, 241, 0.1);
+}
+
 .enhanced-card:hover {
   border-color: #cbd5e1;
   box-shadow: 0 8px 25px -8px rgba(30, 64, 175, 0.15), 0 4px 12px -4px rgba(99, 102, 241, 0.1);
+}
+
+.dark .enhanced-card:hover {
+  border-color: #64748b;
+  box-shadow: 0 8px 25px -8px rgba(59, 130, 246, 0.2), 0 4px 12px -4px rgba(99, 102, 241, 0.15);
 }
 
 .finance-card {
@@ -268,9 +307,19 @@
   border-left: 4px solid #1e40af;
 }
 
+.dark .finance-card {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border-left: 4px solid #3b82f6;
+}
+
 .health-card {
   background: linear-gradient(135deg, #ffffff 0%, #fff7ed 100%);
   border-left: 4px solid #ea580c; /* Orange 600 - consistent with health theme */
+}
+
+.dark .health-card {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border-left: 4px solid #f97316;
 }
 
 .productivity-card {
@@ -278,15 +327,30 @@
   border-left: 4px solid #6366f1;
 }
 
+.dark .productivity-card {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border-left: 4px solid #8b5cf6;
+}
+
 .investment-card {
   background: linear-gradient(135deg, #ffffff 0%, #fefce8 100%);
   border-left: 4px solid #d97706;
+}
+
+.dark .investment-card {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border-left: 4px solid #f59e0b;
 }
 
 /* Add lifestyle-card styling with green colors */
 .lifestyle-card {
   background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
   border-left: 4px solid #059669; /* Emerald 600 - green for lifestyle */
+}
+
+.dark .lifestyle-card {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border-left: 4px solid #10b981;
 }
 
 /* Status indicators */
@@ -296,10 +360,22 @@
   border: 1px solid #86efac;
 }
 
+.dark .status-success {
+  background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+  color: #86efac;
+  border: 1px solid #059669;
+}
+
 .status-warning {
   background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
   color: #92400e;
   border: 1px solid #fbbf24;
+}
+
+.dark .status-warning {
+  background: linear-gradient(135deg, #451a03 0%, #78350f 100%);
+  color: #fbbf24;
+  border: 1px solid #d97706;
 }
 
 .status-info {
@@ -308,9 +384,21 @@
   border: 1px solid #93c5fd;
 }
 
+.dark .status-info {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+  color: #93c5fd;
+  border: 1px solid #3b82f6;
+}
+
 /* Loading and interaction states */
 .loading-shimmer {
   background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.dark .loading-shimmer {
+  background: linear-gradient(90deg, #334155 25%, #475569 50%, #334155 75%);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }
@@ -366,9 +454,19 @@
   color: #1e40af !important; /* Blue 800 */
 }
 
+.dark [data-radix-select-item][data-highlighted] {
+  background: #1e3a8a !important; /* Blue 900 */
+  color: #dbeafe !important; /* Light blue 100 */
+}
+
 [data-radix-select-item]:focus {
   background: #dbeafe !important; /* Light blue 100 */
   color: #1e40af !important; /* Blue 800 */
+}
+
+.dark [data-radix-select-item]:focus {
+  background: #1e3a8a !important; /* Blue 900 */
+  color: #dbeafe !important; /* Light blue 100 */
 }
 
 /* Additional Select styling for better blue theme consistency */
@@ -376,4 +474,10 @@
 .select-item-blue[data-highlighted] {
   background-color: #dbeafe !important;
   color: #1e40af !important;
+}
+
+.dark .select-item-blue:hover,
+.dark .select-item-blue[data-highlighted] {
+  background-color: #1e3a8a !important;
+  color: #dbeafe !important;
 }

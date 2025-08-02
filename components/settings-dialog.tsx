@@ -391,6 +391,22 @@ export function SettingsDialog({
                 </div>
               </CardContent>
             </Card>
+            <Separator />
+
+            <div className="space-y-2">
+              <h4 className="font-medium">Created By</h4>
+              <div className="text-sm text-muted-foreground space-y-1">
+                <div className="flex flex-col gap-1">
+                  <span className="font-medium text-foreground">Michal Šomský</span>
+                  <a
+                    href="mailto:michal.somsky@protonmail.com"
+                    className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+                  >
+                    michal.somsky@protonmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
           </TabsContent>
         </Tabs>
 

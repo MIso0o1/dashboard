@@ -23,7 +23,7 @@ export function FinanceWidget({ widget }: FinanceWidgetProps) {
 
   if (widget.chartType === "pie") {
     return (
-      <div className="h-64">
+      <div className="h-64 w-full">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
@@ -32,9 +32,11 @@ export function FinanceWidget({ widget }: FinanceWidgetProps) {
               cy="50%"
               labelLine={false}
               label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-              outerRadius={80}
+              outerRadius={90}
+              innerRadius={0}
               fill="#1e40af"
               dataKey="value"
+              stroke="none"
             >
               {data.map((entry: any, index: number) => (
                 <Cell key={`cell-${index}`} fill={SOPHISTICATED_COLORS[index % SOPHISTICATED_COLORS.length]} />
@@ -43,11 +45,12 @@ export function FinanceWidget({ widget }: FinanceWidgetProps) {
             <Tooltip
               formatter={(value) => [`$${value}`, "Amount"]}
               contentStyle={{
-                backgroundColor: "rgba(255, 255, 255, 0.95)",
-                border: "1px solid #cbd5e1",
+                backgroundColor: "hsl(var(--popover))",
+                border: "1px solid hsl(var(--border))",
                 borderRadius: "12px",
                 boxShadow: "0 8px 32px -8px rgba(30, 64, 175, 0.2)",
                 backdropFilter: "blur(10px)",
+                color: "hsl(var(--popover-foreground))",
               }}
             />
           </PieChart>
@@ -57,19 +60,20 @@ export function FinanceWidget({ widget }: FinanceWidgetProps) {
   }
 
   return (
-    <div className="h-64">
+    <div className="h-64 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-          <XAxis dataKey="name" stroke="#64748b" fontSize={12} />
-          <YAxis stroke="#64748b" fontSize={12} />
+          <XAxis dataKey="name" stroke="hsl(var(--muted-foreground))" fontSize={12} />
+          <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} />
           <Tooltip
             formatter={(value) => [`$${value}`, "Amount"]}
             contentStyle={{
-              backgroundColor: "rgba(255, 255, 255, 0.95)",
-              border: "1px solid #cbd5e1",
+              backgroundColor: "hsl(var(--popover))",
+              border: "1px solid hsl(var(--border))",
               borderRadius: "12px",
               boxShadow: "0 8px 32px -8px rgba(30, 64, 175, 0.2)",
               backdropFilter: "blur(10px)",
+              color: "hsl(var(--popover-foreground))",
             }}
           />
           <Legend />

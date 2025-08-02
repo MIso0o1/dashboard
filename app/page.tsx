@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { ThemeProvider } from "next-themes"
 import { DashboardSidebar } from "@/components/dashboard-sidebar"
 import { DashboardContent } from "@/components/dashboard-content"
 import { SidebarProvider } from "@/components/ui/sidebar"
@@ -153,23 +154,25 @@ export default function Dashboard() {
   }
 
   return (
-    <SidebarProvider>
-      <div className="flex min-h-screen w-full">
-        <DashboardSidebar
-          onAddWidget={addWidget}
-          widgets={widgets}
-          onClearAllWidgets={clearAllWidgets}
-          onImportWidgets={importWidgets}
-          settings={settings}
-          onUpdateSettings={updateSettings}
-        />
-        <DashboardContent
-          widgets={widgets}
-          onUpdateWidget={updateWidget}
-          onDeleteWidget={deleteWidget}
-          onReorderWidgets={reorderWidgets}
-        />
-      </div>
-    </SidebarProvider>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      <SidebarProvider>
+        <div className="flex min-h-screen w-full">
+          <DashboardSidebar
+            onAddWidget={addWidget}
+            widgets={widgets}
+            onClearAllWidgets={clearAllWidgets}
+            onImportWidgets={importWidgets}
+            settings={settings}
+            onUpdateSettings={updateSettings}
+          />
+          <DashboardContent
+            widgets={widgets}
+            onUpdateWidget={updateWidget}
+            onDeleteWidget={deleteWidget}
+            onReorderWidgets={reorderWidgets}
+          />
+        </div>
+      </SidebarProvider>
+    </ThemeProvider>
   )
 }
