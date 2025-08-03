@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { ThemeProvider } from "next-themes"
+
 import { DashboardSidebar } from "@/components/dashboard-sidebar"
 import { DashboardContent } from "@/components/dashboard-content"
 import { SidebarProvider } from "@/components/ui/sidebar"
@@ -9,7 +9,6 @@ import type { Widget } from "@/types/dashboard"
 
 interface DashboardSettings {
   dashboardName: string
-  theme: "light" | "dark" | "system"
   autoSave: boolean
   showGridLines: boolean
   compactMode: boolean
@@ -154,7 +153,6 @@ export default function Dashboard() {
   }
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
       <SidebarProvider>
         <div className="flex min-h-screen w-full">
           <DashboardSidebar
@@ -173,6 +171,5 @@ export default function Dashboard() {
           />
         </div>
       </SidebarProvider>
-    </ThemeProvider>
   )
 }

@@ -18,7 +18,6 @@ import type { Widget } from "@/types/dashboard"
 
 interface DashboardSettings {
   dashboardName: string
-  theme: "light" | "dark" | "system"
   autoSave: boolean
   showGridLines: boolean
   compactMode: boolean
@@ -203,24 +202,6 @@ export function SettingsDialog({
                 <CardDescription>Customize the look and feel of your dashboard</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="theme">Theme</Label>
-                  <Select
-                    value={localSettings.theme}
-                    onValueChange={(value: "light" | "dark" | "system") =>
-                      setLocalSettings({ ...localSettings, theme: value })
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="light">Light</SelectItem>
-                      <SelectItem value="dark">Dark</SelectItem>
-                      <SelectItem value="system">System</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
 
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
