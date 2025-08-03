@@ -57,27 +57,27 @@ export function WidgetCard({ widget, onUpdate, onDelete }: WidgetCardProps) {
   const getCardStyle = () => {
     switch (widget.type) {
       case "finance":
-        return "finance-card dark:bg-slate-800 dark:border-blue-500/30"
+        return "finance-card"
       case "health":
-        return "health-card dark:bg-slate-800 dark:border-orange-500/30"
+        return "health-card"
       case "todo":
-        return "productivity-card dark:bg-slate-800 dark:border-purple-500/30"
+        return "productivity-card"
       case "investment":
-        return "investment-card dark:bg-slate-800 dark:border-amber-500/30"
+        return "investment-card"
       case "lifestyle":
-        return "lifestyle-card dark:bg-slate-800 dark:border-emerald-500/30"
+        return "lifestyle-card"
       case "metric":
-        return "enhanced-card dark:bg-slate-800 dark:border-slate-600"
+        return "enhanced-card"
       default:
-        return "enhanced-card dark:bg-slate-800 dark:border-slate-600"
+        return "enhanced-card"
     }
   }
 
   return (
     <>
       <Card className={`${getCardHeight()} flex flex-col hover-lift ${getCardStyle()}`}>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3 flex-shrink-0 glass-effect dark:glass-dark rounded-t-xl">
-          <CardTitle className="text-sm font-bold truncate text-slate-800 dark:text-slate-100">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3 flex-shrink-0 glass-effect rounded-t-xl">
+          <CardTitle className="text-sm font-bold truncate text-slate-800">
             {widget.title}
           </CardTitle>
           <DropdownMenu>
@@ -85,25 +85,25 @@ export function WidgetCard({ widget, onUpdate, onDelete }: WidgetCardProps) {
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-8 w-8 p-0 flex-shrink-0 hover:bg-white/50 dark:hover:bg-slate-700/50 focus-glow"
+                className="h-8 w-8 p-0 flex-shrink-0 hover:bg-white/50 focus-glow"
               >
-                <MoreHorizontal className="h-4 w-4 text-slate-600 dark:text-slate-300" />
+                <MoreHorizontal className="h-4 w-4 text-slate-600" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
-              className="glass-effect dark:glass-dark border-white/20 dark:border-slate-600/20 shadow-xl"
+              className="bg-white border shadow-xl z-50"
             >
               <DropdownMenuItem
                 onClick={() => setShowEditDialog(true)}
-                className="hover:bg-white/50 dark:hover:bg-slate-700/50 text-slate-700 dark:text-slate-200"
+                className="hover:bg-white/50 text-slate-700"
               >
-                <Edit className="h-4 w-4 mr-2 text-blue-600 dark:text-blue-400" />
+                <Edit className="h-4 w-4 mr-2 text-blue-600" />
                 Edit
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={onDelete}
-                className="text-red-600 dark:text-red-400 hover:bg-red-50/50 dark:hover:bg-red-900/20"
+                className="text-red-600 hover:bg-red-50/50"
               >
                 <Trash2 className="h-4 w-4 mr-2" />
                 Delete
@@ -111,7 +111,7 @@ export function WidgetCard({ widget, onUpdate, onDelete }: WidgetCardProps) {
             </DropdownMenuContent>
           </DropdownMenu>
         </CardHeader>
-        <CardContent className="flex-1 overflow-hidden p-2 bg-white/30 dark:bg-slate-800/30">
+        <CardContent className="flex-1 overflow-hidden p-2 bg-white/30">
           {renderWidgetContent()}
         </CardContent>
       </Card>
