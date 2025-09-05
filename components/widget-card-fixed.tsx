@@ -4,6 +4,7 @@ import { useState } from "react"
 import { MoreHorizontal, Edit, Trash2 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import type { Widget } from "@/types/dashboard"
 import { FinanceWidget } from "@/components/widgets/finance-widget"
 import { TodoWidget } from "@/components/widgets/todo-widget"
@@ -20,30 +21,6 @@ interface WidgetCardProps {
 
 export function WidgetCard({ widget, onUpdate, onDelete }: WidgetCardProps) {
   const [showEditDialog, setShowEditDialog] = useState(false)
-  const [showDropdown, setShowDropdown] = useState(false)
-
-  const handleEditClick = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    console.log("Edit clicked for widget:", widget.id)
-    setShowEditDialog(true)
-    setShowDropdown(false)
-  }
-
-  const handleDeleteClick = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    console.log("Delete clicked for widget:", widget.id)
-    onDelete()
-    setShowDropdown(false)
-  }
-
-  const toggleDropdown = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    console.log("Three dots clicked for widget:", widget.id)
-    setShowDropdown(!showDropdown)
-  }
 
   const renderWidgetContent = () => {
     switch (widget.type) {
@@ -96,6 +73,20 @@ export function WidgetCard({ widget, onUpdate, onDelete }: WidgetCardProps) {
     }
   }
 
+  const handleEditClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    console.log("Edit clicked for widget:", widget.id)
+    setShowEditDialog(true)
+  }
+
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    console.log("Delete clicked for widget:", widget.id)
+    onDelete()
+  }
+
   return (
     <>
       <Card className={`${getCardHeight()} flex flex-col hover-lift ${getCardStyle()}`}>
@@ -103,41 +94,63 @@ export function WidgetCard({ widget, onUpdate, onDelete }: WidgetCardProps) {
           <CardTitle className="text-sm font-bold truncate text-slate-800">
             {widget.title}
           </CardTitle>
-          <div className="relative">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-8 w-8 p-0 flex-shrink-0 hover:bg-white/50 focus-glow"
-              onClick={toggleDropdown}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-8 w-8 p-0 flex-shrink-0 hover:bg-white/50 focus-glow"
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  console.log("Three dots clicked for widget:", widget.id)
+                }}
+              >
+                <MoreHorizontal className="h-4 w-4 text-slate-600" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="end"
+              className="bg-white border shadow-xl z-50"
+              onCloseAutoFocus={(e) => e.preventDefault()}
             >
-              <MoreHorizontal className="h-4 w-4 text-slate-600" />
-            </Button>
-            {showDropdown && (
-              <div className="absolute right-0 top-8 bg-white border shadow-xl z-[9999] rounded-md min-w-[8rem] p-1">
-                <button
-                  onClick={handleEditClick}
-                  className="w-full flex items-center gap-2 px-2 py-1.5 text-sm hover:bg-white/50 text-slate-700 cursor-pointer rounded-sm"
-                >
-                  <Edit className="h-4 w-4 text-blue-600" />
-                  Edit
-                </button>
-                <button
-                  onClick={handleDeleteClick}
-                  className="w-full flex items-center gap-2 px-2 py-1.5 text-sm text-red-600 hover:bg-red-50/50 cursor-pointer rounded-sm"
-                >
-                  <Trash2 className="h-4 w-4" />
-                  Delete
-                </button>
-              </div>
-            )}
-          </div>
+              <DropdownMenuItem
+                onClick={handleEditClick}
+                className="hover:bg-white/50 text-slate-700 cursor-pointer"
+                onSelect={(e) => {
+                  e.preventDefault()
+                  handleEditClick(e as any)
+                }}
+              >
+                <Edit className="h-4 w-4 mr-2 text-blue-600" />
+                Edit
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={handleDeleteClick}
+                className="text-red-600 hover:bg-red-50/50 cursor-pointer"
+                onSelect={(e) => {
+                  e.preventDefault()
+                  handleDeleteClick(e as any)
+                }}
+              >
+                <Trash2 className="h-4 w-4 mr-2" />
+                Delete
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </CardHeader>
         <CardContent className="flex-1 overflow-hidden p-2 bg-white/30">
           {renderWidgetContent()}
         </CardContent>
       </Card>
 
-      <EditWidgetDialog widget={widget} open={showEditDialog} onOpenChange={setShowEditDialog} onUpdate={onUpdate} />
+      <EditWidgetDialog 
+        widget={widget} 
+        open={showEditDialog} 
+        onOpenChange={setShowEditDialog} 
+        onUpdate={onUpdate} 
+      />
     </>
   )
 }
+
