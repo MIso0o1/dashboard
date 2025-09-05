@@ -98,8 +98,8 @@ export function WidgetCard({ widget, onUpdate, onDelete }: WidgetCardProps) {
 
   return (
     <>
-      <Card className={`${getCardHeight()} flex flex-col hover-lift ${getCardStyle()}`}>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3 flex-shrink-0 glass-effect rounded-t-xl">
+      <Card className={`${getCardHeight()} flex flex-col hover-lift ${getCardStyle()} overflow-visible`}>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3 flex-shrink-0 glass-effect rounded-t-xl overflow-visible">
           <CardTitle className="text-sm font-bold truncate text-slate-800">
             {widget.title}
           </CardTitle>
@@ -132,7 +132,7 @@ export function WidgetCard({ widget, onUpdate, onDelete }: WidgetCardProps) {
             )}
           </div>
         </CardHeader>
-        <CardContent className="flex-1 overflow-hidden p-2 bg-white/30">
+        <CardContent className="flex-1 p-2 bg-white/30">
           {renderWidgetContent()}
         </CardContent>
       </Card>
