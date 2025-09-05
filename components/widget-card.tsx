@@ -86,24 +86,39 @@ export function WidgetCard({ widget, onUpdate, onDelete }: WidgetCardProps) {
                 variant="ghost"
                 size="sm"
                 className="h-8 w-8 p-0 flex-shrink-0 hover:bg-white/50 focus-glow"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
               >
                 <MoreHorizontal className="h-4 w-4 text-slate-600" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
-              className="bg-white border shadow-xl z-50"
+              className="bg-white border shadow-xl z-[9999] min-w-[120px]"
+              sideOffset={5}
+              avoidCollisions={true}
+              collisionPadding={10}
             >
               <DropdownMenuItem
-                onClick={() => setShowEditDialog(true)}
-                className="hover:bg-white/50 text-slate-700"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setShowEditDialog(true);
+                }}
+                className="hover:bg-gray-100 text-slate-700 cursor-pointer"
               >
                 <Edit className="h-4 w-4 mr-2 text-blue-600" />
                 Edit
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={onDelete}
-                className="text-red-600 hover:bg-red-50/50"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  onDelete();
+                }}
+                className="text-red-600 hover:bg-red-50 cursor-pointer"
               >
                 <Trash2 className="h-4 w-4 mr-2" />
                 Delete
